@@ -28,7 +28,8 @@ class TwitterBootstrapHelper extends AppHelper {
 		'label',
 		'div',
 		'error',
-		'checkbox_label'
+		'checkbox_label',
+		'state'
 	);
 
 	/**
@@ -122,10 +123,15 @@ class TwitterBootstrapHelper extends AppHelper {
 			$options["input"] = "";
 		} 
 		if (isset($options["input"])) { return $options["input"]; }
-		$options["input"] = $this->Form->input($options["field"], array(
-			"div" => false,
-			"label" => false
-		));
+		
+		$opt = array('div' => false, 'label' => false);
+		foreach ($options as $key => $value) {
+			if (!in_array($key, $this->__dontSendToFormHelper)) {
+				$opt[$key] = $value;
+			}
+		}
+		
+		$options["input"] = $this->Form->input($options["field"], $opt);
 		return $options["input"];
 	}
 
