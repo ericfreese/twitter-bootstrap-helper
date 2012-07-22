@@ -119,9 +119,6 @@ class TwitterBootstrapHelper extends AppHelper {
 	 * @return void
 	 */
 	public function _construct_input($options) {
-		if (in_array($options["type"], array("checkbox"))) {
-			$options["input"] = "";
-		} 
 		if (isset($options["input"])) { return $options["input"]; }
 		
 		$opt = array('div' => false, 'label' => false);
